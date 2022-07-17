@@ -4,7 +4,8 @@
   "description": "Sorting algorithms library, use with JavaScript/TypeScript.",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "dev": "ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -14,5 +15,8 @@
     "algorithms"
   ],
   "author": "Olli Glorioso",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
 }

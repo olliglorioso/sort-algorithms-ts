@@ -3,16 +3,17 @@ import { swap } from "./util"
 
 export const insertionSort = ({ arr, ascending }: SortPropsT): number[] => {
     let array = [...arr]
+    console.log(ascending)
     for (let i = 1; i < array.length; i++) {
         let j = i - 1
-        while (ascending ? (j >= 0 && array[j] > array[j + 1]) : (j >= 0 && array[j] < array[j + 1])) {
+        while (ascending ? (j >= 0 && array[j] < array[j + 1]) : (j >= 0 && array[j] > array[j + 1])) {
+            // console.log(j)
             swap(j, j + 1, array)
             j -= 1
         }
     }
     return array
 }
-
 
 export const mergeSort = ({ arr, ascending }: SortPropsT): number[] => {
     let array = [...arr]
@@ -46,15 +47,13 @@ export const mergeSort = ({ arr, ascending }: SortPropsT): number[] => {
     return array
 }
 
-
-
 export const compare = ({ arr, ascending }: SortPropsT): CompareT => {
     const sortFunctions = [insertionSort, mergeSort]
     const sortFunctionsNames = ["insertionSort", "mergeSort"]
     const times = []
     for (let i = 0; i < sortFunctions.length; i++) {
         const startTime = performance.now()
-        sortFunctions[i]({ arr })
+        sortFunctions[i]({ arr, ascending })
         const endTime = performance.now()
         times.push(endTime - startTime)
     }
@@ -64,7 +63,7 @@ export const compare = ({ arr, ascending }: SortPropsT): CompareT => {
     return { bestTime: min, bestFunction: sortFunctions[idx], bestFunctionName: sortFunctionsNames[idx] } 
 }
 
-const testlist = Array.from(Array(100000).keys()).reverse()
+const testlist = Array.from(Array(10000).keys())
 // const res = mergeSort({ arr: testlist })
-const compared = compare({ arr: testlist })
+const compared = compare({ arr: testlist, ascending: true })
 console.error(compared)

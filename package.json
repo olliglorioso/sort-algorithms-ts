@@ -6,9 +6,8 @@
   "types": "dist/index.d.ts",
   "homepage": "https://github.com/olliglorioso/sort-algorithms-ts#readme",
   "scripts": {
-    "test": "npm run test",
     "dev": "ts-node src/index.ts",
-    "prettier": "prettier ."
+    "test": "jest"
   },
   "repository": {
     "type": "git",

@@ -1,15 +1,22 @@
 export interface CompareT {
     bestFunctionName: string,
-    bestFunction: ({ arr, ascending }: SortPropsT) => number[],
+    bestFunction: ({ arr, compare }: SortPropsT) => Array<number>,
     bestTime: number
 }
 
 export interface SortPropsT {
-    arr: number[],
-    ascending?: boolean
+    arr: Array<number>,
+    compare: (a: number, b: number) => number
 }
 
 export interface RandomSamplePropsT {
-    arr: number[],
-    size: number
+    arr: Array<number>,
+    size: number,
+    compare: (a: number, b: number) => number
+}
+
+export interface QuickSortPropsT {
+    arr: Array<number>,
+    pivotLocation?: "left" | "right" | "center",
+    compare: (a: number, b: number) => number
 }

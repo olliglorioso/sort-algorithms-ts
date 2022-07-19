@@ -2,7 +2,9 @@
   "name": "sort-algorithms-ts",
   "version": "1.0.0",
   "description": "Sorting algorithms library, use with JavaScript/TypeScript.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "homepage": "https://github.com/olliglorioso/sort-algorithms-ts#readme",
   "scripts": {
     "test": "npm run test",
     "dev": "ts-node src/index.ts"

@@ -93,7 +93,3 @@ export const quickSort = ({ arr, pivotLocation = "left", compare = ascendingComp
     sortInterval(init, 0, init.length - 1)
     return init
 }
-
-// const testlist = randomNumArray({ size: 100000 })
-// const res = quickSort({ arr: testlist, compare: descendingCompare, pivotLocation: "left" })
-// console.log(res);

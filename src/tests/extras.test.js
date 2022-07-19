@@ -1,4 +1,4 @@
-import { compare, randomNumArray } from "../index"
+const { compare, randomNumArray } = require("../index")
 
 const randomArray = randomNumArray({ size: 10000 })
 let nums = Array.from(Array(10000).keys())

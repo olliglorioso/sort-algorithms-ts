@@ -38,3 +38,19 @@ const resultArray = bestFunction({ arr: testArray, compare: ascendingCompare })
 // Basic use of a sorting algorithm.
 const basicResultArray = insertionSort({ arr: array, compare: ascendingCompare })
 ```
+
+## Custom compare
+
+- Your custom compare function should take parameters ``a`` and ``b`` in order.
+  - If ``a`` belongs to the left side of ``b``, -1 should be returned.
+  - If ``a`` belongs to the right side of ``b``, 1 should be returned.
+  - If the order is irrevelevant (same element example), 0 should be returned.
+- Example (numerical/alphabetical array to ascending order):
+
+  ```typescript
+  const ascendingCompare = (a: number, b: number) => {
+    if (a < b) return -1
+    else if (a > b) return 1
+    else return 0
+  }
+  ```

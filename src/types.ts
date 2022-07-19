@@ -9,6 +9,10 @@ export interface SortPropsT {
     compare: (a: number, b: number) => number
 }
 
+export interface RandomArrayPropsT {
+    size: number
+}
+
 export interface RandomSamplePropsT {
     arr: Array<number>,
     size: number,

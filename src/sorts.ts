@@ -1,5 +1,6 @@
-import { swap, ascendingCompare, descendingCompare } from "./util"
+import { swap, ascendingCompare } from "./util"
 import { QuickSortPropsT, SortPropsT } from "./types"
+import { randomNumArray } from "./extras"
 
 export const insertionSort = ({ arr, compare = ascendingCompare }: SortPropsT): Array<number> => {
     let array = [...arr]
@@ -17,9 +18,7 @@ export const mergeSort = ({ arr, compare = ascendingCompare }: SortPropsT): Arra
     let array = [...arr]
     
     const sortInterval = (first: number, last: number) => {
-        if (first == last) {
-            return
-        }
+        if (first == last) return
         const middle = Math.floor((first + last) / 2)
         sortInterval(first, middle)
         sortInterval(middle + 1, last)
@@ -51,9 +50,7 @@ export const quickSort = ({ arr, pivotLocation = "left", compare = ascendingComp
     if (arr.length === 1) return arr
     let array = [...arr]
     const sortInterval = (first: number, last: number) => {
-        if (first >= last) {
-            return
-        }
+        if (first >= last) return
         const pivot = division(first, last)
         sortInterval(first, pivot - 1)
         sortInterval(pivot + 1, last)
@@ -65,7 +62,8 @@ export const quickSort = ({ arr, pivotLocation = "left", compare = ascendingComp
         let i = left - 1
 
         for (let j = left; j < right; j++) {
-            if (array[j] <= pivot) {
+            const compared = compare(array[j], pivot)
+            if (compared === -1) {
                 i += 1
                 swap(i, j, array)
             }
@@ -78,6 +76,6 @@ export const quickSort = ({ arr, pivotLocation = "left", compare = ascendingComp
     return array
 }
 
-const testlist = Array.from(Array(10000).keys()).reverse()
-const res = mergeSort({ arr: testlist, compare: descendingCompare })
+const testlist = randomNumArray({ size: 1000 })
+const res = quickSort({ arr: testlist, compare: ascendingCompare })
 console.log(res);

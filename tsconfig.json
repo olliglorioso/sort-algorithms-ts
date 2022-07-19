@@ -2,7 +2,8 @@
     "compilerOptions": {
       "module": "commonjs",
       "esModuleInterop": true,
-      "target": "es2015",
+      "target": "ES2021",
+      "forceConsistentCasingInFileNames": true,
       "moduleResolution": "node",
       "declaration": true,
       "sourceMap": true,
@@ -11,8 +12,8 @@
     },
     "exclude": [
       "src/tests",
-      "./jest.config.js",
-      "dist"
+      "dist",
+      "node_modules",
     ],
-    "lib": ["es2015"]
+    "lib": ["ES2021"],
 }

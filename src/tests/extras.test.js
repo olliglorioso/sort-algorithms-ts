@@ -1,8 +1,10 @@
 const { compare, randomNumArray } = require("../index")
 
-const randomArray = randomNumArray({ size: 10000 })
-let nums = Array.from(Array(10000).keys())
+const randomArray = randomNumArray({ size: 100000 })
 
-test("Test compare-function (it should return correct function).", () => {
+const reverseNums = Array.from(Array(100000).keys()).reverse()
 
+test("Test compare-function with random array (it should return correct function).", () => {
+    const res = compare({ arr: randomArray })
+    expect(typeof res.bestFunctionName === "string").toBe(true)
 })

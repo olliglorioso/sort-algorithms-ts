@@ -19,15 +19,33 @@ export const randomSample = ({ arr, size = 30 }: RandomSamplePropsT): Array<numb
  * @example const { bestTime, bestFunction, bestFunctionName } = compary({ arr: [3, 2, 1], ascending: true })
  */
 export const compare = ({ arr, compare }: SortPropsT): CompareT => {
-    const sortFunctions = [insertionSort, mergeSort, quickSort]
-    const sortFunctionsNames = ["insertionSort", "mergeSort", "quickSort"]
-    const times = []
+    let sortFunctions = [insertionSort, mergeSort]
+    let sortFunctionsNames = ["insertionSort", "mergeSort"]
+    let times: Array<number> = []
+    let startTime: number
+    let endTime: number
     for (let i = 0; i < sortFunctions.length; i++) {
-        const startTime = performance.now()
+        startTime = performance.now()
         sortFunctions[i]({ arr, compare })
-        const endTime = performance.now()
+        endTime = performance.now()
         times.push(endTime - startTime)
     }
+    
+    // Test quicksort with pivot location left (start).
+    startTime = performance.now()
+    quickSort({ arr, compare, pivotLocation: "left" })
+    endTime = performance.now()
+    times.push(endTime - startTime)
+
+    // Test quicksort with pivot location right (end).
+    startTime = performance.now()
+    quickSort({ arr, compare, pivotLocation: "right" })
+    endTime = performance.now()
+    times.push(endTime - startTime)
+
+    sortFunctions = sortFunctions.concat([quickSort, quickSort])
+    sortFunctionsNames = sortFunctionsNames.concat(["quickSortLeft", "quickSortRight"])
+
     const min = Math.min(...times)
     const idx = times.indexOf(min)
     return { bestTime: min, bestFunction: sortFunctions[idx], bestFunctionName: sortFunctionsNames[idx] } 

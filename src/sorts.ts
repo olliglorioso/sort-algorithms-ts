@@ -56,7 +56,7 @@ export const quickSort = ({ arr, pivotLocation = "left", compare = ascendingComp
         }
     }
 
-    const partitionLeft = (array: Array<number>, left: number = 0, right: number = array.length - 1) => {
+    const partitionRight = (array: Array<number>, left: number = 0, right: number = array.length - 1) => {
         let i = left - 1
         const pivot = array[right]
         for (let j = left; j <= right - 1; j++) {
@@ -69,13 +69,24 @@ export const quickSort = ({ arr, pivotLocation = "left", compare = ascendingComp
         return i + 1
     }
 
+    const partitionLeft = (array: Array<number>, left: number = 0, right: number = array.length - 1) => {
+        const pivot = array[left]
+        let i = right + 1
+        for (let j = right; j >= left + 1; j--) {
+            if (compare(array[j], pivot) === 1) {
+                i -= 1
+                swap(i, j, array)
+            }
+        }
+        swap(i - 1, left, array)
+        return i - 1
+    }
+
     const partition = (array: Array<number>, left: number = 0, right: number = array.length - 1): number => {
         let pivot: number
-        if (pivotLocation === "center") pivot = array[Math.floor((right + left) / 2)]
-        if (pivotLocation === "left") {
-            pivot = partitionLeft(array, left, right)
-        }
-        else if (pivotLocation === "right") pivot = array[right]
+        if (pivotLocation === "center") pivot = partitionRight(array, left, right)
+        else if (pivotLocation === "left") pivot = partitionLeft(array, left, right)
+        else if (pivotLocation === "right") pivot = partitionRight(array, left, right)
         return pivot
     }
 
@@ -83,6 +94,6 @@ export const quickSort = ({ arr, pivotLocation = "left", compare = ascendingComp
     return init
 }
 
-const testlist = randomNumArray({ size: 1000 })
-const res = quickSort({ arr: testlist, compare: descendingCompare })
-console.log(res);
+// const testlist = randomNumArray({ size: 100000 })
+// const res = quickSort({ arr: testlist, compare: descendingCompare, pivotLocation: "left" })
+// console.log(res);

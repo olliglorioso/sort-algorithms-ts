@@ -19,8 +19,8 @@ export const randomSample = ({ arr, size = 30 }: RandomSamplePropsT): Array<numb
  * @example const { bestTime, bestFunction, bestFunctionName } = compary({ arr: [3, 2, 1], ascending: true })
  */
 export const compare = ({ arr, compare }: SortPropsT): CompareT => {
-    const sortFunctions = [insertionSort, mergeSort]
-    const sortFunctionsNames = ["insertionSort", "mergeSort"]
+    const sortFunctions = [insertionSort, mergeSort, quickSort]
+    const sortFunctionsNames = ["insertionSort", "mergeSort", "quickSort"]
     const times = []
     for (let i = 0; i < sortFunctions.length; i++) {
         const startTime = performance.now()
